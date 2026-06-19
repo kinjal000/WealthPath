@@ -389,3 +389,14 @@ body {
 .btn-wp-delete:hover {
     color: #B91C1C;
 }
+
+/* Custom Navigation Bar Framework */
+.wp-navbar {
+    background-color: #FFFFFF !important;
+    border-bottom: 1px solid var(--wp-border) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04) !important; /* Premium subtle depth separator shadow */
+    height: 70px;
+    padding: 0;
+    position: relative;
+    z-index: 100;
+}
