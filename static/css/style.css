@@ -1,116 +1,208 @@
 /* ====================================================================
-   WealthPath Theme Design Architecture Engine
-   Corporate Structural Palette Implementation
+   WealthPath Redesigned Premium Fintech UI Architecture Engine
    ==================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-    --wp-bg-light: #F9F8F6;
-    --wp-nav-bg: #EFE9E3;
-    --wp-border: #D9CFC7;
-    --wp-primary: #C9B59C;
-    --wp-primary-hover: #BCA487;
-    --wp-text-dark: #3F3A36;
-    --wp-text-muted: #7A726A;
+    --wp-bg-light: #FFFBF1;
+    --wp-nav-bg: #352F44;
+    --wp-nav-text: #FFFBF1;
+    --wp-border: #B9B4C7;
+    --wp-primary: #5C5470;
+    --wp-primary-hover: #352F44;
+    --wp-card-bg: #FFFFFF;
+    --wp-accent: #EFE1D1;
+    --wp-text-dark: #352F44;
+    --wp-text-muted: #5C5470;
 }
 
 body {
     background-color: var(--wp-bg-light);
     color: var(--wp-text-dark);
-    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    font-family: 'Inter', sans-serif;
     min-height: 100vh;
+    letter-spacing: -0.01em;
 }
 
-/* Navbar Customizations */
+/* Custom Navigation Bar Alignment */
 .wp-navbar {
     background-color: var(--wp-nav-bg) !important;
-    border-bottom: 2px solid var(--wp-border);
-    padding: 0.85rem 1rem;
+    border-bottom: 3px solid var(--wp-primary);
+    padding: 0.75rem 1rem;
+    box-shadow: 0 4px 12px rgba(53, 47, 68, 0.1);
 }
 
 .wp-brand {
     font-weight: 700;
-    color: var(--wp-text-dark) !important;
-    letter-spacing: -0.03em;
+    color: var(--wp-nav-text) !important;
+    font-size: 1.35rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-/* Card Improvements */
+.wp-nav-link {
+    color: rgba(255, 251, 241, 0.75) !important;
+    font-weight: 500;
+    padding: 0.5rem 1rem !important;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.wp-nav-link:hover, .wp-nav-link.active {
+    color: var(--wp-nav-text) !important;
+    background-color: rgba(92, 84, 112, 0.4);
+}
+
+/* Premium Dashboard Hero Panel */
+.wp-hero-section {
+    background: linear-gradient(135deg, var(--wp-nav-bg) 0%, var(--wp-primary) 100%);
+    color: #FFFFFF;
+    border-radius: 16px;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 6px 20px rgba(53, 47, 68, 0.15);
+}
+
+/* Premium Component Cards Structure */
 .wp-card {
-    background-color: #FFFFFF;
+    background-color: var(--wp-card-bg);
     border: 1px solid var(--wp-border) !important;
-    border-radius: 12px !important;
-    box-shadow: 0 4px 15px rgba(63, 58, 54, 0.04) !important;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 14px !important;
+    box-shadow: 0 4px 6px rgba(53, 47, 68, 0.03) !important;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    overflow: hidden;
+}
+
+.wp-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(53, 47, 68, 0.08) !important;
 }
 
 .wp-card-header {
-    background-color: var(--wp-nav-bg) !important;
-    border-bottom: 1px solid var(--wp-border) !important;
+    background-color: var(--wp-accent) !important;
     color: var(--wp-text-dark) !important;
+    border-bottom: 1px solid var(--wp-border) !important;
     font-weight: 600;
     font-size: 1.05rem;
     padding: 1rem 1.25rem;
-    border-top-left-radius: 12px !important;
-    border-top-right-radius: 12px !important;
 }
 
-/* System Accent Form Controls and Buttons */
+/* Metric Display Values */
+.metric-value {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--wp-text-dark);
+    line-height: 1.2;
+}
+
+.metric-icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background-color: var(--wp-accent);
+    color: var(--wp-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+}
+
+/* Redesigned Form Controls */
+.form-control, .form-select {
+    border: 1px solid var(--wp-border);
+    border-radius: 8px;
+    padding: 0.6rem 0.85rem;
+    color: var(--wp-text-dark);
+    background-color: #FFFFFF;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--wp-primary);
+    box-shadow: 0 0 0 0.25rem rgba(92, 84, 112, 0.15);
+}
+
+/* Enterprise Custom Primary Buttons */
 .btn-wp-primary {
     background-color: var(--wp-primary) !important;
     border-color: var(--wp-primary) !important;
     color: #FFFFFF !important;
     font-weight: 600;
-    padding: 0.5rem 1.25rem;
-    border-radius: 6px;
+    padding: 0.6rem 1.5rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
 }
 
 .btn-wp-primary:hover {
     background-color: var(--wp-primary-hover) !important;
     border-color: var(--wp-primary-hover) !important;
+    transform: translateY(-1px);
 }
 
-.form-control:focus, .form-select:focus {
-    border-color: var(--wp-primary);
-    box-shadow: 0 0 0 0.25rem rgba(201, 181, 156, 0.25);
-}
-
-/* Component Layout Tables styling */
+/* Enterprise Clean Table Framework */
 .wp-table-container {
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
     border: 1px solid var(--wp-border);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.01);
+}
+
+.wp-table {
+    margin-bottom: 0 !important;
 }
 
 .wp-table thead {
-    background-color: var(--wp-nav-bg);
+    position: sticky;
+    top: 0;
+    background-color: var(--wp-accent);
+    z-index: 10;
 }
 
 .wp-table th {
     color: var(--wp-text-dark);
     font-weight: 600;
-    border-bottom: 2px solid var(--wp-border);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    padding: 1rem 1.25rem !important;
+    border-bottom: 2px solid var(--wp-border) !important;
 }
 
-/* Metrics Displays */
-.metric-value {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--wp-text-dark);
-    margin: 0.5rem 0;
+.wp-table td {
+    padding: 1rem 1.25rem !important;
+    vertical-align: middle;
+    border-bottom: 1px solid rgba(185, 180, 199, 0.3) !important;
 }
 
-/* Custom Status Indicator Badge */
+.wp-table tbody tr:nth-of-type(odd) {
+    background-color: rgba(255, 251, 241, 0.4);
+}
+
+.wp-table tbody tr:hover {
+    background-color: rgba(239, 225, 209, 0.3) !important;
+}
+
+/* Status Indicator Subsystems */
 .status-indicator-active {
+    color: #2b9348;
+    font-weight: 600;
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    color: #2B7A4B;
-    font-weight: 600;
+    gap: 0.5rem;
 }
 
 .pulse-dot {
-    width: 8px;
-    height: 8px;
-    background-color: #2B7A4B;
+    width: 10px;
+    height: 10px;
+    background-color: #2b9348;
     border-radius: 50%;
     display: inline-block;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(43, 147, 72, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(43, 147, 72, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(43, 147, 72, 0); }
 }

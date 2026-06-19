@@ -5,57 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>System Access Authentication - WealthPath Cloud</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body class="d-flex flex-column justify-content-center align-items-center py-5">
+<body class="d-flex flex-column justify-content-center align-items-center py-5" style="background-color: #352F44;">
 
-<div class="container" style="max-width: 460px;">
+<div class="container" style="max-width: 440px; margin-top: 5%;">
     
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             {% for category, message in messages %}
-                <div class="alert alert-{{ category }} alert-dismissible fade show border-0 shadow-sm mb-3" role="alert">
+                <div class="alert alert-{{ category }} alert-dismissible fade show border-0 shadow-sm mb-3 text-white bg-opacity-25 {% if category == 'danger' %}bg-danger border border-danger{% else %}bg-info border border-info{% endif %}" role="alert">
+                    <i class="bi bi-info-circle-fill me-2"></i>
                     {{ message }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             {% endfor %}
         {% endif %}
     {% endwith %}
 
-    <div class="card wp-card p-4">
+    <div class="card wp-card p-4 shadow-lg border-0" style="border-radius: 16px !important;">
         <div class="text-center my-3">
-            <h2 class="wp-brand mb-1">WealthPath</h2>
-            <p class="text-muted small text-uppercase tracking-wider">Cloud Investment Advisory Engine</p>
+            <h2 class="wp-brand mb-1 text-dark d-justify-center justify-content-center"><i class="bi bi-safe2-fill text-primary"></i> WealthPath</h2>
+            <p class="text-muted small text-uppercase tracking-wider fw-semibold">Cloud Investment Advisory Engine</p>
         </div>
         
-        <hr class="text-muted opacity-25">
+        <hr class="text-muted opacity-25 my-4">
 
-        <form action="{{ url_for('login') }}" method="POST" class="mt-3">
+        <form action="{{ url_for('login') }}" method="POST">
             <div class="mb-3">
                 <label for="email" class="form-label small fw-semibold text-secondary">Administrative Email Target</label>
-                <input type="email" class="form-control py-2" id="email" name="email" required placeholder="name@domain.com">
+                <div class="input-group">
+                    <span class="input-group-text bg-light border-end-0 text-muted"><i class="bi bi-envelope"></i></span>
+                    <input type="email" class="form-control py-2 border-start-0" id="email" name="email" required placeholder="name@domain.com">
+                </div>
             </div>
             <div class="mb-4">
                 <label for="password" class="form-label small fw-semibold text-secondary">System Entry Passcode</label>
-                <input type="password" class="form-control py-2" id="password" name="password" required placeholder="••••••••">
+                <div class="input-group">
+                    <span class="input-group-text bg-light border-end-0 text-muted"><i class="bi bi-lock"></i></span>
+                    <input type="password" class="form-control py-2 border-start-0" id="password" name="password" required placeholder="••••••••">
+                </div>
             </div>
-            <button type="submit" class="btn btn-wp-primary w-100 py-2 shadow-sm">Authorize Session</button>
+            <button type="submit" class="btn btn-wp-primary w-100 py-2.5 shadow-sm rounded-3"><i class="bi bi-shield-lock"></i> Authorize Session</button>
         </form>
     </div>
 
-    <div class="card wp-card mt-4 p-3 bg-white">
-        <div class="d-flex align-items-center gap-2 mb-2">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#C9B59C" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
-                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
-            </svg>
-            <span class="small fw-bold text-uppercase tracking-wide" style="color: var(--wp-text-dark);">Demo Engineering Access Metadata</span>
+    <div class="card wp-card mt-4 p-3 bg-white bg-opacity-10 text-white border-0">
+        <div class="d-flex align-items-center gap-2 mb-1">
+            <i class="bi bi-info-circle text-accent"></i>
+            <span class="small fw-semibold text-uppercase tracking-wider" style="color: #EFE1D1;">Developer Architecture Note</span>
         </div>
-        <div class="bg-light p-2 rounded border border-light">
-            <div class="small text-muted"><strong>Email Identifier:</strong> <span class="text-dark">admin@gmail.com</span></div>
-            <div class="small text-muted"><strong>Passcode Value:</strong> <span class="text-dark">admin123</span></div>
-        </div>
+        <p class="text-white-50 m-0 style-italic" style="font-size: 0.76rem; line-height: 1.4;">
+            Administrative credentials are securely mapped in database parameters layer scripts (`wealthpath.sql`).
+        </p>
     </div>
-    
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

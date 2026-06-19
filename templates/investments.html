@@ -5,14 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Investment Portfolio Mapping Ledger - WealthPath</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg wp-navbar">
     <div class="container">
-        <a class="navbar-brand wp-brand" href="{{ url_for('dashboard') }}">← Terminal Dashboard</a>
-        <a href="{{ url_for('logout') }}" class="btn btn-outline-danger btn-sm">Logout</a>
+        <a class="navbar-brand wp-brand" href="{{ url_for('dashboard') }}"><i class="bi bi-arrow-left"></i> Terminal Dashboard</a>
+        <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#wpNavbarContent">
+            <i class="bi bi-list fs-3"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="wpNavbarContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4 gap-1">
+                <li class="nav-item"><a class="nav-link wp-nav-link" href="{{ url_for('dashboard') }}"><i class="bi bi-grid-1x2-fill me-1"></i> Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link wp-nav-link" href="{{ url_for('clients') }}"><i class="bi bi-people-fill me-1"></i> Clients</a></li>
+                <li class="nav-item"><a class="nav-link wp-nav-link active" href="{{ url_for('investments') }}"><i class="bi bi-cash-coin me-1"></i> Investments</a></li>
+            </ul>
+            <div class="ms-auto">
+                <a href="{{ url_for('logout') }}" class="btn btn-outline-danger btn-sm"><i class="bi bi-box-arrow-right"></i> Logout</a>
+            </div>
+        </div>
     </div>
 </nav>
 
@@ -21,7 +34,8 @@
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             {% for category, message in messages %}
-                <div class="alert alert-{{ category }} alert-dismissible fade show border-0 shadow-sm" role="alert">
+                <div class="alert alert-{{ category }} alert-dismissible fade show border-0 shadow-sm mb-4" role="alert">
+                    <i class="bi {% if category == 'success' %}bi-check-circle-fill{% else %}bi-exclamation-triangle-fill{% endif %} me-2"></i>
                     {{ message }}
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
@@ -29,24 +43,24 @@
         {% endif %}
     {% endwith %}
 
-    <div class="card wp-card mb-5">
-        <div class="card-header wp-card-header">Log Dynamic Asset Placement Allocation</div>
+    <div class="card wp-card mb-4">
+        <div class="card-header wp-card-header"><i class="bi bi-currency-dollar me-1"></i> Log Dynamic Asset Placement Allocation</div>
         <div class="card-body p-4">
             <form action="{{ url_for('investments') }}" method="POST" class="row g-3">
                 <div class="col-md-3">
-                    <label class="form-label small fw-bold text-secondary">Target Client Name</label>
+                    <label class="form-label small fw-semibold text-secondary">Client Name</label>
                     <input type="text" class="form-control" name="client_name" placeholder="Input mapped client identity" required>
                 </div>
                 <div class="col-md-3">
-                    <label class="form-label small fw-bold text-secondary">Financial Instrument Category</label>
+                    <label class="form-label small fw-semibold text-secondary">Investment Type</label>
                     <input type="text" class="form-control" name="investment_type" placeholder="e.g., SIP, Equity, Gold" required>
                 </div>
                 <div class="col-md-3">
-                    <label class="form-label small fw-bold text-secondary">Principal Quantum Allocation (INR)</label>
+                    <label class="form-label small fw-semibold text-secondary">Investment Amount (INR)</label>
                     <input type="number" step="0.01" min="1" class="form-control" name="amount" placeholder="Currency value" required>
                 </div>
                 <div class="col-md-3">
-                    <label class="form-label small fw-bold text-secondary">Vulnerability Risk Class Index</label>
+                    <label class="form-label small fw-semibold text-secondary">Risk Level</label>
                     <select class="form-select" name="risk_level">
                         <option value="Low">Low Yield Risk Portfolio</option>
                         <option value="Moderate" selected>Balanced Moderate Volatility</option>
@@ -54,7 +68,7 @@
                     </select>
                 </div>
                 <div class="col-12 text-end mt-4">
-                    <button type="submit" class="btn btn-wp-primary px-4 shadow-sm">Authorize Capital Placement</button>
+                    <button type="submit" class="btn btn-wp-primary px-4 shadow-sm"><i class="bi bi-plus-circle me-1"></i> Add Investment</button>
                 </div>
             </form>
         </div>
@@ -62,47 +76,47 @@
 
     <div class="card wp-card shadow-sm">
         <div class="card-header wp-card-header d-flex justify-content-between align-items-center">
-            <span>Active Financial Asset Portfolio Ledger Records</span>
-            <span class="badge bg-white text-dark border px-2.5 py-1.5 rounded-pill font-monospace">Operational Pools</span>
+            <span><i class="bi bi-journal-check me-1"></i> Active Asset Investment Matrix Ledger</span>
         </div>
         <div class="card-body p-0">
-            <div class="table-responsive wp-table-container m-0 border-0 rounded-0">
-                <table class="table wp-table table-hover align-middle m-0">
+            <div class="table-responsive wp-table-container">
+                <table class="table wp-table table-hover align-middle">
                     <thead>
                         <tr>
-                            <th class="ps-3" style="width: 80px;">Asset ID</th>
-                            <th>Target Client Base</th>
-                            <th>Instrument Architecture Type</th>
-                            <th>Allocated Quantum (Valuation)</th>
-                            <th>Risk Matrix Index</th>
-                            <th class="text-center" style="width: 120px;">Execution Actions</th>
+                            <th scope="col" class="ps-3" style="width: 10%;">Ledger Ref</th>
+                            <th scope="col" style="width: 25%;">Client Identity</th>
+                            <th scope="col" style="width: 20%;">Asset Classification</th>
+                            <th scope="col" style="width: 25%;">Principal Quantum Allocation</th>
+                            <th scope="col" style="width: 15%;">Risk Level</th>
+                            <th scope="col" class="text-center" style="width: 5%;">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% if investments %}
                             {% for inv in investments %}
                             <tr>
-                                <td class="ps-3 font-monospace text-secondary">#{{ inv.id }}</td>
-                                <td class="fw-bold text-dark">{{ inv.client_name }}</td>
-                                <td><span class="text-uppercase font-monospace text-muted small" style="letter-spacing: 0.05em;">{{ inv.investment_type }}</span></td>
-                                <td class="fw-bold text-success">₹{{ "{:,.2f}".format(inv.amount) }}</td>
+                                <td class="ps-3 font-monospace text-secondary fw-semibold">#TRX{{ inv.id }}</td>
+                                <td class="fw-bold text-dark"><i class="bi bi-person text-muted me-1"></i> {{ inv.client_name }}</td>
+                                <td><span class="badge bg-secondary-subtle text-dark border px-2 py-1"><i class="bi bi-tag-fill text-muted me-1"></i> {{ inv.investment_type }}</span></td>
+                                <td class="fw-semibold text-dark font-monospace">₹ {{ "{:,.2f}".format(inv.amount) }}</td>
                                 <td>
                                     {% if inv.risk_level == 'High' %}
-                                        <span class="badge bg-danger-subtle text-danger border border-danger-subtle px-2.5 py-1 rounded">High Volatility</span>
+                                        <span class="badge bg-danger-subtle text-danger border border-danger-subtle px-2.5 py-1 rounded"><i class="bi bi-graph-up-arrow me-1"></i> High Profile</span>
                                     {% elif inv.risk_level == 'Moderate' %}
-                                        <span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle px-2.5 py-1 rounded">Moderate Yield</span>
+                                        <span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle px-2.5 py-1 rounded"><i class="bi bi-dash-circle me-1"></i> Moderate Yield</span>
                                     {% else %}
-                                        <span class="badge bg-success-subtle text-success border border-success-subtle px-2.5 py-1 rounded">Low Risk Profile</span>
+                                        <span class="badge bg-success-subtle text-success border border-success-subtle px-2.5 py-1 rounded"><i class="bi bi-shield-check me-1"></i> Low Risk</span>
                                     {% endif %}
                                 </td>
                                 <td class="text-center">
-                                    <a href="{{ url_for('delete_investment', id=inv.id) }}" class="btn btn-sm btn-outline-danger px-3 rounded">Revoke</a>
+                                    <a href="{{ url_for('delete_investment', id=inv.id) }}" class="btn btn-sm btn-outline-danger px-2.5 rounded py-1" title="Revoke Mapping Placement"><i class="bi bi-x-circle-fill"></i></a>
                                 </td>
                             </tr>
                             {% endfor %}
                         {% else %}
                         <tr>
                             <td colspan="6" class="text-center py-5 text-muted">
+                                <i class="bi bi-wallet2 fs-2 d-block mb-2 text-black-50"></i>
                                 Zero tracking allocations found across localized deployment vectors.
                             </td>
                         </tr>

@@ -5,28 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Management Terminal - WealthPath Cloud</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg wp-navbar">
     <div class="container">
-        <a class="navbar-brand wp-brand" href="#">WealthPath Cloud</a>
-        <div class="ms-auto d-flex align-items-center gap-3">
-            <div class="small text-muted d-none d-sm-block">
-                Role Context: <strong class="text-dark">{{ session.get('admin_role', 'Administrator') }}</strong>
+        <a class="navbar-brand wp-brand" href="#"><i class="bi bi-safe2-fill"></i> WealthPath Cloud</a>
+        <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#wpNavbarContent">
+            <i class="bi bi-list fs-3"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="wpNavbarContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4 gap-1">
+                <li class="nav-item"><a class="nav-link wp-nav-link active" href="{{ url_for('dashboard') }}"><i class="bi bi-grid-1x2-fill me-1"></i> Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link wp-nav-link" href="{{ url_for('clients') }}"><i class="bi bi-people-fill me-1"></i> Clients</a></li>
+                <li class="nav-item"><a class="nav-link wp-nav-link" href="{{ url_for('investments') }}"><i class="bi bi-cash-coin me-1"></i> Investments</a></li>
+            </ul>
+            <div class="ms-auto d-flex align-items-center gap-3">
+                <div class="small text-white-50 d-none d-md-block">
+                    Role Context: <strong class="text-white">{{ session.get('admin_role', 'Administrator') }}</strong>
+                </div>
+                <span class="badge bg-success-subtle text-success border border-success px-2 py-1"><i class="bi bi-cpu me-1"></i> Cloud Status</span>
+                <a href="{{ url_for('logout') }}" class="btn btn-outline-danger btn-sm px-3"><i class="bi bi-box-arrow-right"></i> Logout</a>
             </div>
-            <a href="{{ url_for('logout') }}" class="btn btn-outline-danger btn-sm px-3">Logout</a>
         </div>
     </div>
 </nav>
 
-<div class="container mt-5">
+<div class="container mt-4">
     
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             {% for category, message in messages %}
-                <div class="alert alert-{{ category }} alert-dismissible fade show border-0 shadow-sm" role="alert">
+                <div class="alert alert-{{ category }} alert-dismissible fade show border-0 shadow-sm mb-4" role="alert">
+                    <i class="bi {% if category == 'success' %}bi-check-circle-fill{% else %}bi-exclamation-triangle-fill{% endif %} me-2"></i>
                     {{ message }}
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
@@ -34,54 +47,112 @@
         {% endif %}
     {% endwith %}
 
-    <div class="row mb-4">
-        <div class="col">
-            <h4 class="fw-bold m-0 text-dark">Ecosystem Metrics Summary</h4>
-            <p class="text-muted small">Real-time status updates parsed from system runtime telemetry variables.</p>
+    <div class="wp-hero-section d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+        <div>
+            <h1 class="fw-bold mb-2">Welcome Back, Advisor</h1>
+            <p class="m-0 text-white-50">Manage critical allocations, structure dynamic client profiles, and verify real-time platform metrics cleanly.</p>
+        </div>
+        <div>
+            <span class="btn btn-light text-dark fw-medium pointer-events-none"><i class="bi bi-clock-history me-1"></i> Live Session Active</span>
         </div>
     </div>
 
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4 mb-5">
+    <div class="card wp-card mb-4">
+        <div class="card-body py-3 px-4 d-flex flex-wrap align-items-center justify-content-between gap-3">
+            <div class="fw-semibold text-dark"><i class="bi bi-lightning-charge-fill text-warning me-1"></i> Quick Actions Workspace:</div>
+            <div class="d-flex gap-2 flex-wrap">
+                <a href="{{ url_for('clients') }}" class="btn btn-sm btn-outline-secondary rounded-pill px-3"><i class="bi bi-person-plus-fill"></i> Add Client</a>
+                <a href="{{ url_for('investments') }}" class="btn btn-sm btn-outline-secondary rounded-pill px-3"><i class="bi bi-plus-circle-fill"></i> Add Investment</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4 mb-4">
         <div class="col">
-            <div class="card wp-card h-100 p-3">
-                <div class="text-uppercase text-secondary small fw-semibold">Total Base Clients</div>
-                <div class="metric-value">{{ total_clients }}</div>
-                <div class="mt-auto pt-2">
-                    <a href="{{ url_for('clients') }}" class="btn btn-wp-primary btn-sm w-100">Manage Clients</a>
+            <div class="card wp-card h-100 p-4">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <div class="text-uppercase text-secondary small fw-semibold tracking-wider">Total Base Clients</div>
+                    <div class="metric-icon-box"><i class="bi bi-people-fill"></i></div>
+                </div>
+                <div class="metric-value mb-3">{{ total_clients }}</div>
+                <div class="mt-auto pt-2 border-top">
+                    <a href="{{ url_for('clients') }}" class="text-decoration-none text-primary small fw-medium">View client directory →</a>
                 </div>
             </div>
         </div>
 
         <div class="col">
-            <div class="card wp-card h-100 p-3">
-                <div class="text-uppercase text-secondary small fw-semibold">Total Asset Ledgers</div>
-                <div class="metric-value">{{ total_investments }}</div>
-                <div class="mt-auto pt-2">
-                    <a href="{{ url_for('investments') }}" class="btn btn-wp-primary btn-sm w-100">Manage Portfolios</a>
+            <div class="card wp-card h-100 p-4">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <div class="text-uppercase text-secondary small fw-semibold tracking-wider">Total Investment Lines</div>
+                    <div class="metric-icon-box"><i class="bi bi-currency-exchange"></i></div>
+                </div>
+                <div class="metric-value mb-3">{{ total_investments }}</div>
+                <div class="mt-auto pt-2 border-top">
+                    <a href="{{ url_for('investments') }}" class="text-decoration-none text-primary small fw-medium">Manage portfolios →</a>
                 </div>
             </div>
         </div>
 
         <div class="col">
-            <div class="card wp-card h-100 p-3">
-                <div class="text-uppercase text-secondary small fw-semibold">Active Cloud Advisors</div>
-                <div class="metric-value">{{ active_advisors }}</div>
-                <div class="text-muted small mt-auto pt-1">
+            <div class="card wp-card h-100 p-4">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <div class="text-uppercase text-secondary small fw-semibold tracking-wider">System Users</div>
+                    <div class="metric-icon-box"><i class="bi bi-shield-lock-fill"></i></div>
+                </div>
+                <div class="metric-value mb-3">{{ active_advisors }}</div>
+                <div class="text-muted small mt-auto pt-2 border-top">
                     Authenticated Security Profiles
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="col">
-            <div class="card wp-card h-100 p-3">
-                <div class="text-uppercase text-secondary small fw-semibold">AWS Engine Infrastructure</div>
-                <div class="my-auto py-3">
-                    <div class="status-indicator-active fs-4">
-                        <span class="pulse-dot"></span> Online
+    <div class="row g-4">
+        <div class="col-lg-4">
+            <div class="card wp-card h-100">
+                <div class="card-header wp-card-header"><i class="bi bi-hdd-network-fill me-1"></i> Cloud Status</div>
+                <div class="card-body p-4 d-flex flex-column justify-content-between">
+                    <div class="py-2">
+                        <div class="status-indicator-active fs-4 mb-2">
+                            <span class="pulse-dot"></span> Online
+                        </div>
+                        <p class="text-muted small m-0">Core relational processing layers mapping database actions execute cleanly with AWS operational rules.</p>
+                    </div>
+                    <div class="text-muted small border-top pt-2 mt-4 font-monospace" style="font-size: 0.8rem;">
+                        Local-Node Bind: 127.0.0.1:5000
                     </div>
                 </div>
-                <div class="text-muted small border-top pt-2 mt-auto" style="font-size: 0.78rem;">
-                    Local-Node: 127.0.0.1:5000
+            </div>
+        </div>
+
+        <div class="col-lg-8">
+            <div class="card wp-card h-100">
+                <div class="card-header wp-card-header"><i class="bi bi-journal-text me-1"></i> Recent Activity Log</div>
+                <div class="card-body p-0">
+                    <div class="list-group list-group-flush small m-0">
+                        <div class="list-group-item bg-transparent p-3 border-0 border-bottom d-flex align-items-start gap-3">
+                            <i class="bi bi-plus-circle-fill text-success fs-5"></i>
+                            <div>
+                                <div class="fw-semibold text-dark">System Authorization Event Token verified</div>
+                                <div class="text-muted mt-0.5">Administrative login connection established safely.</div>
+                            </div>
+                        </div>
+                        <div class="list-group-item bg-transparent p-3 border-0 border-bottom d-flex align-items-start gap-3">
+                            <i class="bi bi-circle-fill text-primary fs-5"></i>
+                            <div>
+                                <div class="fw-semibold text-dark">Relational Telemetry Metric Snapshot Updated</div>
+                                <div class="text-muted mt-0.5">Database parameters synchronised with environment configurations.</div>
+                            </div>
+                        </div>
+                        <div class="list-group-item bg-transparent p-3 border-0 d-flex align-items-start gap-3">
+                            <i class="bi bi-shield-check text-info fs-5"></i>
+                            <div>
+                                <div class="fw-semibold text-dark">EBS Safe Automatic Backup Rotations Scheduled</div>
+                                <div class="text-muted mt-0.5">System infrastructure snapshot monitoring checks status: Healthy.</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
