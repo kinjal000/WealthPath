@@ -204,4 +204,4 @@ def delete_investment(id):
 
 if __name__ == '__main__':
     # Binding cleanly over 0.0.0.0 enables AWS EC2 Security Groups integration visibility natively
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5002, debug=True)
