@@ -1,151 +1,256 @@
 /* ====================================================================
-   WealthPath Redesigned Premium Fintech UI Architecture Engine
+   WealthPath Premium Enterprise Fintech UI Theme Engine
    ==================================================================== */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-    --wp-bg-light: #FFFBF1;
-    --wp-nav-bg: #352F44;
-    --wp-nav-text: #FFFBF1;
-    --wp-border: #B9B4C7;
-    --wp-primary: #5C5470;
-    --wp-primary-hover: #352F44;
-    --wp-card-bg: #FFFFFF;
-    --wp-accent: #EFE1D1;
-    --wp-text-dark: #352F44;
-    --wp-text-muted: #5C5470;
+    --wp-bg: #FFFFFF;
+    --wp-primary: #4A4466;
+    --wp-accent: #F4AE52;
+    --wp-border: #E5E5E5;
+    --wp-text-dark: #1A1A1A;
+    --wp-text-muted: #666666;
+    --wp-bg-light: #F9F9F9;
+    --wp-success: #22C55E;
 }
 
 body {
-    background-color: var(--wp-bg-light);
+    background-color: var(--wp-bg);
     color: var(--wp-text-dark);
     font-family: 'Inter', sans-serif;
     min-height: 100vh;
+    font-size: 0.875rem;
     letter-spacing: -0.01em;
 }
 
-/* Custom Navigation Bar Alignment */
+/* Base Container & Structural Elements */
+.container {
+    max-width: 1200px !important;
+}
+
+.wp-card {
+    background: #FFFFFF;
+    border: 1px solid var(--wp-border) !important;
+    border-radius: 4px !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Custom Navigation Bar Framework */
 .wp-navbar {
-    background-color: var(--wp-nav-bg) !important;
-    border-bottom: 3px solid var(--wp-primary);
-    padding: 0.75rem 1rem;
-    box-shadow: 0 4px 12px rgba(53, 47, 68, 0.1);
+    background-color: #FFFFFF !important;
+    border-bottom: 1px solid var(--wp-border);
+    height: 70px;
+    padding: 0;
 }
 
 .wp-brand {
     font-weight: 700;
-    color: var(--wp-nav-text) !important;
-    font-size: 1.35rem;
+    font-size: 1.1rem;
+    color: var(--wp-primary) !important;
+    letter-spacing: -0.02em;
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
+.wp-nav-center {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+}
+
 .wp-nav-link {
-    color: rgba(255, 251, 241, 0.75) !important;
+    color: var(--wp-text-muted) !important;
     font-weight: 500;
-    padding: 0.5rem 1rem !important;
-    border-radius: 6px;
+    font-size: 0.9rem;
+    padding: 23px 0 !important;
+    border-bottom: 2px solid transparent;
     transition: all 0.2s ease;
 }
 
 .wp-nav-link:hover, .wp-nav-link.active {
-    color: var(--wp-nav-text) !important;
-    background-color: rgba(92, 84, 112, 0.4);
+    color: var(--wp-primary) !important;
+    border-bottom: 2px solid var(--wp-primary);
 }
 
-/* Premium Dashboard Hero Panel */
-.wp-hero-section {
-    background: linear-gradient(135deg, var(--wp-nav-bg) 0%, var(--wp-primary) 100%);
-    color: #FFFFFF;
-    border-radius: 16px;
-    padding: 2.5rem;
-    margin-bottom: 2rem;
-    box-shadow: 0 6px 20px rgba(53, 47, 68, 0.15);
+.wp-nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
 }
 
-/* Premium Component Cards Structure */
-.wp-card {
-    background-color: var(--wp-card-bg);
-    border: 1px solid var(--wp-border) !important;
-    border-radius: 14px !important;
-    box-shadow: 0 4px 6px rgba(53, 47, 68, 0.03) !important;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-    overflow: hidden;
-}
-
-.wp-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 16px rgba(53, 47, 68, 0.08) !important;
-}
-
-.wp-card-header {
-    background-color: var(--wp-accent) !important;
-    color: var(--wp-text-dark) !important;
-    border-bottom: 1px solid var(--wp-border) !important;
+.wp-user-badge {
+    font-size: 0.85rem;
     font-weight: 600;
-    font-size: 1.05rem;
-    padding: 1rem 1.25rem;
+    color: var(--wp-primary);
+    background-color: var(--wp-bg-light);
+    padding: 0.35rem 0.75rem;
+    border-radius: 4px;
+    border: 1px solid var(--wp-border);
 }
 
-/* Metric Display Values */
-.metric-value {
-    font-size: 2.25rem;
+.wp-logout-btn {
+    color: #DC2626 !important;
+    font-weight: 500;
+    font-size: 0.85rem;
+    text-decoration: none;
+    padding: 0.35rem 0.75rem;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.wp-logout-btn:hover {
+    background-color: #FEF2F2;
+}
+
+/* Compact Hero Header */
+.wp-hero {
+    border-bottom: 1px solid var(--wp-border);
+    background-color: var(--wp-bg-light);
+    padding: 1.75rem 0;
+    margin-bottom: 2rem;
+}
+
+.wp-hero h1 {
+    font-weight: 700;
+    font-size: 1.35rem;
+    color: var(--wp-text-dark);
+    margin-bottom: 0.25rem;
+}
+
+.wp-hero p {
+    color: var(--wp-text-muted);
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+/* Quick Action Icon Cards */
+.wp-action-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--wp-border);
+    border-radius: 4px;
+    background: #FFFFFF;
+    padding: 1.25rem;
+    text-decoration: none !important;
+    color: var(--wp-text-dark);
+    font-weight: 500;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+    text-align: center;
+    height: 100%;
+}
+
+.wp-action-card i {
+    font-size: 1.5rem;
+    color: var(--wp-primary);
+    margin-bottom: 0.5rem;
+}
+
+.wp-action-card:hover {
+    border-color: var(--wp-accent);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+/* Metric / Summary Cards Matrix */
+.wp-metric-card {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    background: #FFFFFF;
+    border: 1px solid var(--wp-border);
+    border-radius: 4px;
+    padding: 1.25rem;
+    height: 100%;
+}
+
+.wp-metric-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background-color: var(--wp-bg-light);
+    border: 1px solid var(--wp-border);
+    color: var(--wp-primary);
+    font-size: 1.25rem;
+    border-radius: 4px;
+}
+
+.wp-metric-val {
+    font-size: 1.5rem;
     font-weight: 700;
     color: var(--wp-text-dark);
     line-height: 1.2;
 }
 
-.metric-icon-box {
-    width: 48px;
-    height: 48px;
-    border-radius: 10px;
-    background-color: var(--wp-accent);
-    color: var(--wp-primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.35rem;
+.wp-metric-lbl {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: var(--wp-text-muted);
+    margin-bottom: 0.15rem;
 }
 
-/* Redesigned Form Controls */
+.wp-metric-desc {
+    font-size: 0.75rem;
+    color: #888888;
+}
+
+/* Forms & UI Controls Custom Specification */
+.form-label {
+    font-weight: 600;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--wp-text-muted);
+    margin-bottom: 0.4rem;
+}
+
 .form-control, .form-select {
     border: 1px solid var(--wp-border);
-    border-radius: 8px;
-    padding: 0.6rem 0.85rem;
+    border-radius: 4px !important;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.85rem;
     color: var(--wp-text-dark);
     background-color: #FFFFFF;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    box-shadow: none !important;
+    transition: border-color 0.15s ease-in-out;
 }
 
 .form-control:focus, .form-select:focus {
     border-color: var(--wp-primary);
-    box-shadow: 0 0 0 0.25rem rgba(92, 84, 112, 0.15);
 }
 
-/* Enterprise Custom Primary Buttons */
+/* Enterprise Buttons Layout */
 .btn-wp-primary {
     background-color: var(--wp-primary) !important;
-    border-color: var(--wp-primary) !important;
+    border: 1px solid var(--wp-primary) !important;
     color: #FFFFFF !important;
-    font-weight: 600;
-    padding: 0.6rem 1.5rem;
-    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.85rem;
+    padding: 0.55rem 1.25rem;
+    border-radius: 4px !important;
     transition: all 0.2s ease;
 }
 
 .btn-wp-primary:hover {
-    background-color: var(--wp-primary-hover) !important;
-    border-color: var(--wp-primary-hover) !important;
-    transform: translateY(-1px);
+    background-color: var(--wp-accent) !important;
+    border-color: var(--wp-accent) !important;
+    color: var(--wp-text-dark) !important;
 }
 
-/* Enterprise Clean Table Framework */
+/* Enterprise Table Architecture */
 .wp-table-container {
-    border-radius: 12px;
-    overflow: hidden;
     border: 1px solid var(--wp-border);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.01);
+    border-radius: 4px;
+    overflow: hidden;
+    background: #FFFFFF;
 }
 
 .wp-table {
@@ -155,54 +260,132 @@ body {
 .wp-table thead {
     position: sticky;
     top: 0;
-    background-color: var(--wp-accent);
+    background-color: var(--wp-bg-light);
     z-index: 10;
 }
 
 .wp-table th {
-    color: var(--wp-text-dark);
+    color: var(--wp-text-muted);
     font-weight: 600;
     text-transform: uppercase;
     font-size: 0.75rem;
-    letter-spacing: 0.05em;
-    padding: 1rem 1.25rem !important;
-    border-bottom: 2px solid var(--wp-border) !important;
+    letter-spacing: 0.04em;
+    padding: 0.85rem 1rem !important;
+    border-bottom: 1px solid var(--wp-border) !important;
 }
 
 .wp-table td {
-    padding: 1rem 1.25rem !important;
+    padding: 0.85rem 1rem !important;
     vertical-align: middle;
-    border-bottom: 1px solid rgba(185, 180, 199, 0.3) !important;
+    border-bottom: 1px solid var(--wp-border) !important;
+    color: var(--wp-text-dark);
 }
 
-.wp-table tbody tr:nth-of-type(odd) {
-    background-color: rgba(255, 251, 241, 0.4);
+.wp-table tbody tr:nth-of-type(even) {
+    background-color: #FAFAFA;
 }
 
 .wp-table tbody tr:hover {
-    background-color: rgba(239, 225, 209, 0.3) !important;
+    background-color: #F1F3F9;
 }
 
-/* Status Indicator Subsystems */
-.status-indicator-active {
-    color: #2b9348;
-    font-weight: 600;
-    display: inline-flex;
+/* Modern Infrastructure Monitor Status Items */
+.wp-status-item {
+    display: flex;
     align-items: center;
-    gap: 0.5rem;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--wp-border);
 }
 
-.pulse-dot {
-    width: 10px;
-    height: 10px;
-    background-color: #2b9348;
+.wp-status-item:last-child {
+    border-bottom: none;
+}
+
+.wp-status-label {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 500;
+}
+
+/* Timeline Custom Element */
+.wp-timeline {
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.wp-timeline-item {
+    position: relative;
+    padding-bottom: 1.25rem;
+}
+
+.wp-timeline-item:last-child {
+    padding-bottom: 0;
+}
+
+.wp-timeline-dot {
+    position: absolute;
+    left: -1.5rem;
+    top: 4px;
+    width: 9px;
+    height: 9px;
     border-radius: 50%;
-    display: inline-block;
-    animation: pulse 2s infinite;
 }
 
-@keyframes pulse {
-    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(43, 147, 72, 0.7); }
-    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(43, 147, 72, 0); }
-    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(43, 147, 72, 0); }
+.wp-timeline-dot.green { background-color: #22C55E; }
+.wp-timeline-dot.blue { background-color: #3B82F6; }
+.wp-timeline-dot.orange { background-color: #F59E0B; }
+
+.wp-timeline-text {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--wp-text-dark);
+}
+
+.wp-timeline-time {
+    font-size: 0.75rem;
+    color: var(--wp-text-muted);
+    margin-top: 0.15rem;
+}
+
+/* Risk Framework Pill Labels */
+.wp-badge-low {
+    background-color: #DCFCE7;
+    color: #15803D;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+}
+
+.wp-badge-medium {
+    background-color: #FEF3C7;
+    color: #B45309;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+}
+
+.wp-badge-high {
+    background-color: #FEE2E2;
+    color: #B91C1C;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+}
+
+/* Small Minimal Trash Icon Button variant */
+.btn-wp-delete {
+    color: #EF4444;
+    background: transparent;
+    border: none;
+    font-size: 1rem;
+    padding: 0.25rem 0.5rem;
+    transition: color 0.15s;
+}
+.btn-wp-delete:hover {
+    color: #B91C1C;
 }
