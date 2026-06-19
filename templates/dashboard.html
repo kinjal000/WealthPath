@@ -28,7 +28,7 @@
 </nav>
 
 <div class="wp-hero">
-    <div class="container text-center">
+    <div class="container">
         <h1>WealthPath Investment Advisory Cloud</h1>
         <p>Centralized Wealth Management Platform running on AWS Cloud Infrastructure.</p>
     </div>
@@ -86,6 +86,34 @@
                     <div class="wp-metric-desc">AWS Cluster online</div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <h6 class="text-uppercase fw-bold text-secondary mb-3" style="font-size: 0.75rem; letter-spacing: 0.05em;">Quick System Operations</h6>
+    <div class="row g-3 mb-4">
+        <div class="col-6 col-md-3">
+            <a href="{{ url_for('clients') }}" class="wp-action-card">
+                <i class="bi bi-person-plus"></i>
+                <span>+ Add Client</span>
+            </a>
+        </div>
+        <div class="col-6 col-md-3">
+            <a href="{{ url_for('investments') }}" class="wp-action-card">
+                <i class="bi bi-cash-stack"></i>
+                <span>+ Add Investment</span>
+            </a>
+        </div>
+        <div class="col-6 col-md-3">
+            <a href="#" onclick="alert('Generating Enterprise Portfolio Report Structure...')" class="wp-action-card">
+                <i class="bi bi-file-earmark-bar-graph"></i>
+                <span>Generate Report</span>
+            </a>
+        </div>
+        <div class="col-6 col-md-3">
+            <a href="#" onclick="alert('Connecting to AWS Infrastructure Heartbeat Engine...')" class="wp-action-card">
+                <i class="bi bi-activity"></i>
+                <span>Cloud Monitoring</span>
+            </a>
         </div>
     </div>
 
