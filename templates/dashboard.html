@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Management Terminal - WealthPath Cloud</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg wp-navbar">
+    <div class="container">
+        <a class="navbar-brand wp-brand" href="#">WealthPath Cloud</a>
+        <div class="ms-auto d-flex align-items-center gap-3">
+            <div class="small text-muted d-none d-sm-block">
+                Role Context: <strong class="text-dark">{{ session.get('admin_role', 'Administrator') }}</strong>
+            </div>
+            <a href="{{ url_for('logout') }}" class="btn btn-outline-danger btn-sm px-3">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show border-0 shadow-sm" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <div class="row mb-4">
+        <div class="col">
+            <h4 class="fw-bold m-0 text-dark">Ecosystem Metrics Summary</h4>
+            <p class="text-muted small">Real-time status updates parsed from system runtime telemetry variables.</p>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4 mb-5">
+        <div class="col">
+            <div class="card wp-card h-100 p-3">
+                <div class="text-uppercase text-secondary small fw-semibold">Total Base Clients</div>
+                <div class="metric-value">{{ total_clients }}</div>
+                <div class="mt-auto pt-2">
+                    <a href="{{ url_for('clients') }}" class="btn btn-wp-primary btn-sm w-100">Manage Clients</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card wp-card h-100 p-3">
+                <div class="text-uppercase text-secondary small fw-semibold">Total Asset Ledgers</div>
+                <div class="metric-value">{{ total_investments }}</div>
+                <div class="mt-auto pt-2">
+                    <a href="{{ url_for('investments') }}" class="btn btn-wp-primary btn-sm w-100">Manage Portfolios</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card wp-card h-100 p-3">
+                <div class="text-uppercase text-secondary small fw-semibold">Active Cloud Advisors</div>
+                <div class="metric-value">{{ active_advisors }}</div>
+                <div class="text-muted small mt-auto pt-1">
+                    Authenticated Security Profiles
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card wp-card h-100 p-3">
+                <div class="text-uppercase text-secondary small fw-semibold">AWS Engine Infrastructure</div>
+                <div class="my-auto py-3">
+                    <div class="status-indicator-active fs-4">
+                        <span class="pulse-dot"></span> Online
+                    </div>
+                </div>
+                <div class="text-muted small border-top pt-2 mt-auto" style="font-size: 0.78rem;">
+                    Local-Node: 127.0.0.1:5000
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

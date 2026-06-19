@@ -1,0 +1,116 @@
+/* ====================================================================
+   WealthPath Theme Design Architecture Engine
+   Corporate Structural Palette Implementation
+   ==================================================================== */
+
+:root {
+    --wp-bg-light: #F9F8F6;
+    --wp-nav-bg: #EFE9E3;
+    --wp-border: #D9CFC7;
+    --wp-primary: #C9B59C;
+    --wp-primary-hover: #BCA487;
+    --wp-text-dark: #3F3A36;
+    --wp-text-muted: #7A726A;
+}
+
+body {
+    background-color: var(--wp-bg-light);
+    color: var(--wp-text-dark);
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    min-height: 100vh;
+}
+
+/* Navbar Customizations */
+.wp-navbar {
+    background-color: var(--wp-nav-bg) !important;
+    border-bottom: 2px solid var(--wp-border);
+    padding: 0.85rem 1rem;
+}
+
+.wp-brand {
+    font-weight: 700;
+    color: var(--wp-text-dark) !important;
+    letter-spacing: -0.03em;
+}
+
+/* Card Improvements */
+.wp-card {
+    background-color: #FFFFFF;
+    border: 1px solid var(--wp-border) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 15px rgba(63, 58, 54, 0.04) !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.wp-card-header {
+    background-color: var(--wp-nav-bg) !important;
+    border-bottom: 1px solid var(--wp-border) !important;
+    color: var(--wp-text-dark) !important;
+    font-weight: 600;
+    font-size: 1.05rem;
+    padding: 1rem 1.25rem;
+    border-top-left-radius: 12px !important;
+    border-top-right-radius: 12px !important;
+}
+
+/* System Accent Form Controls and Buttons */
+.btn-wp-primary {
+    background-color: var(--wp-primary) !important;
+    border-color: var(--wp-primary) !important;
+    color: #FFFFFF !important;
+    font-weight: 600;
+    padding: 0.5rem 1.25rem;
+    border-radius: 6px;
+}
+
+.btn-wp-primary:hover {
+    background-color: var(--wp-primary-hover) !important;
+    border-color: var(--wp-primary-hover) !important;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--wp-primary);
+    box-shadow: 0 0 0 0.25rem rgba(201, 181, 156, 0.25);
+}
+
+/* Component Layout Tables styling */
+.wp-table-container {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--wp-border);
+}
+
+.wp-table thead {
+    background-color: var(--wp-nav-bg);
+}
+
+.wp-table th {
+    color: var(--wp-text-dark);
+    font-weight: 600;
+    border-bottom: 2px solid var(--wp-border);
+}
+
+/* Metrics Displays */
+.metric-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--wp-text-dark);
+    margin: 0.5rem 0;
+}
+
+/* Custom Status Indicator Badge */
+.status-indicator-active {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #2B7A4B;
+    font-weight: 600;
+}
+
+.pulse-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #2B7A4B;
+    border-radius: 50%;
+    display: inline-block;
+}
